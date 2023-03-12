@@ -1,12 +1,18 @@
+import React from "react";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { useFonts } from "expo-font";
 import Home from "./screens/Home";
 import Login from "./screens/Login";
-import { useFonts } from "expo-font";
 import Register from "./screens/Register";
-import React from "react";
 
-const Stack = createNativeStackNavigator();
+export type StackParams = {
+  Login: undefined;
+  Register: undefined;
+  Home: undefined;
+};
+
+const Stack = createNativeStackNavigator<StackParams>();
 const theme = {
   ...DefaultTheme,
   colors: {
@@ -32,7 +38,7 @@ export default function App() {
     <NavigationContainer theme={theme}>
       <Stack.Navigator
         initialRouteName="Login"
-        screenOptions={{ headerShown: false }}
+        screenOptions={{ headerShown: false, animation: "none" }}
       >
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Login" component={Login} />
